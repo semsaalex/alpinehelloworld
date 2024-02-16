@@ -63,7 +63,7 @@ pipeline {
         }
         environment {
             DOCKERHUB_AUTH  = credentials('dockerhub')
-            HOSTNAME_DEPLOY_STAGING = "ec2-100-26-192-220.compute-1.amazonaws.com"
+            HOSTNAME_DEPLOY_STAGING = "ec2-54-204-141-23.compute-1.amazonaws.com"
         }  
         steps {
             sshagent(credentials: ['SSH_AUTH_SERVER']) {
@@ -80,10 +80,10 @@ pipeline {
         }
         environment {
             DOCKERHUB_AUTH  = credentials('dockerhub')
-            HOSTNAME_DEPLOY_STAGING = "ec2-100-26-192-220.compute-1.amazonaws.com"
+            HOSTNAME_DEPLOY_STAGING = "ec2-54-204-141-23.compute-1.amazonaws.com"
         }  
         steps {
-            sshagent(credentials: ['SSH_AUTH']) {
+            sshagent(credentials: ['SSH_AUTH_SERVER']) {
                 sh '''
                 '''
             }
