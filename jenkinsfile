@@ -10,7 +10,7 @@ pipeline {
         stage("Build Image"){
             agent any
             steps{
-                scripts {
+                script {
                     sh ''' 
                     echo $ID_DOCKER
                     echo $IMAGE_NAME
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        curl http://172.17.0.1:${PORT_EXPOSED} | grep -q "Hello world!"
+                        curl http://172.17.0.1:${PORT_EXPOSED} | grep -q "Hello Alex!"
                     '''
                 }
             }
