@@ -131,6 +131,10 @@ pipeline {
     }
 
     post {
-           
+        always {
+            scipt {
+                slackNotifier currentBuild.result
+            }
+        }
     }
 }
