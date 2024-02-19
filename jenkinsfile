@@ -4,7 +4,7 @@ pipeline {
         DOCKERHUB_AUTH = credentials('DOCKERHUB_AUTH')
         ID_DOCKER = "${DOCKERHUB_AUTH_USR}"
         PORT_EXPOSED = "80"
-        HOSTNAME_DEPLOY_STAGING = "ec2-54-80-49-138.compute-1.amazonaws.com"
+        HOSTNAME_DEPLOY_STAGING = "ec2-54-81-54-108.compute-1.amazonaws.com"
         HOSTNAME_DEPLOY_PROD = "ec2-54-196-118-180.compute-1.amazonaws.com"
     }
     stages {
