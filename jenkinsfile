@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        curl http://172.17.0.1:${PORT_EXPOSED} | grep -q "Hello world! Nicolas"
+                        curl http://172.17.0.1:${PORT_EXPOSED} | grep -q "Hello Alex!"
                     '''
                 }
             }
@@ -72,7 +72,7 @@ pipeline {
         stage ('Deploy in staging') {
             agent any
             environment {
-                HOSTNAME_DEPLOY_STAGING = "ec2-54-204-141-23.compute-1.amazonaws.com"
+                HOSTNAME_DEPLOY_STAGING = "ec2-54-80-49-138.compute-1.amazonaws.com"
             }
             steps {
                 sshagent(credentials: ['SSH_AUTH_SERVER']) {
@@ -96,7 +96,7 @@ pipeline {
         stage ('Deploy in prod') {
             agent any
             environment {
-                HOSTNAME_DEPLOY_PROD = "ec2-54-204-141-23.compute-1.amazonaws.com"
+                HOSTNAME_DEPLOY_PROD = "ec2-54-196-118-180.compute-1.amazonaws.com"
             }
 
             steps {
@@ -118,9 +118,13 @@ pipeline {
                 }
             }
         }
-
-
-
-
+    }
+    post {
+        success {
+            slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }
+        failure {
+            slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }   
     }
 }
